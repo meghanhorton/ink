@@ -9,11 +9,30 @@ Download:      http://zurb.com/ink/download.php
 
 Ink is MIT-licensed and absolutely free to use. Ink wouldn't be possible without the support of the entire ZURB team, our friends and colleagues who gave feedback, and some luminaries who did some heavy lifting that we took advantage of (thanks guys).
 
+Installation
+===========
+
+``` 
+cd ink
+npm install -g grunt-cli 
+```
+
+How to run
+===========
+
+To develop templates with LiveReload (no inlining):
+``` grunt dev ```
+
+To develop templates with LiveReload (inlining):
+``` grunt dev:inline ```
+
+To build:
+``` grunt ```
+or
+``` grunt deploy:downloads ```
+
 Additions
 =========
-
-To build the files:
-``` grunt deploy:downloads ```
 
 This version adds
 * [grunt-premailer](https://github.com/dwightjack/grunt-premailer) to generate inline styles

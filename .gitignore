@@ -2,3 +2,7 @@
 node_modules/
 build/
 .sass-cache/
+
+css/sass/*
+css/*/.scss
+*cornell*

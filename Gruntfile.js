@@ -108,7 +108,7 @@ module.exports = function(grunt) {
           files: [{
               expand: true,
               cwd: 'css/sass',
-              src: ['**/*.scss'],
+              src: ['*.scss'],
               dest: 'css/',
               ext: '.css'
           }]
@@ -123,8 +123,15 @@ module.exports = function(grunt) {
         },
       },
       templates: {
-        files: ['templates/**/*.html', 'css/sass/*.scss', 'css/*.css'],
+        files: ['templates/**/*.html', 'css/*', 'css/**/*', 'css/**/**/*'],
         tasks: ['shell:makeStage', 'sass:dist', 'assemble:templates'],
+        options: {
+          livereload: true,
+        },
+      },
+      inlineTemplates: {
+        files: ['templates/**/*.html', 'css/*', 'css/**/*', 'css/**/**/*'],
+        tasks: ['shell:makeStage', 'sass:dist', 'assemble:templates', 'premailer:simple'],
         options: {
           livereload: true,
         },
@@ -140,8 +147,10 @@ module.exports = function(grunt) {
 
   grunt.registerTask('make:templates', ['sass:dist', 'assemble:templates', 'shell:zipTemplates']);
   grunt.registerTask('deploy:downloads', ['shell:makeStage', 'sass:dist','assemble:templates', 'premailer:simple', 'shell:zipTemplates', 'shell:linkFramework', 'shell:deployDownloads']);
+  grunt.registerTask('default', ['shell:makeStage', 'sass:dist','assemble:templates', 'premailer:simple', 'shell:zipTemplates', 'shell:linkFramework', 'shell:deployDownloads']);
   grunt.registerTask('make:docs', ['shell:makeStage', 'assemble:docsDev', 'shell:testDocs']);
   grunt.registerTask('deploy:docs', ['shell:makeStage', 'assemble:docsDeploy', 'shell:deployDocs', 'shell:cleanUp']);
-  grunt.registerTask('default', ['watch:docs']);
+  // grunt.registerTask('default', ['watch:docs']);
   grunt.registerTask('dev', ['watch:templates']);
+  grunt.registerTask('dev:inline', ['watch:inlineTemplates']);
 };

@@ -33,8 +33,7 @@ grunt dev:inline
 To build:
 ``` 
 grunt
-```
-or
+``` 
 ``` 
 grunt deploy:downloads
 ```

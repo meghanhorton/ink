@@ -17,5 +17,6 @@ To build the files:
 
 This version adds
 * [grunt-premailer](https://github.com/dwightjack/grunt-premailer) to generate inline styles
+* [grunt-contrib-sass](https://github.com/gruntjs/grunt-contrib-sass) to compile SASS
 
 

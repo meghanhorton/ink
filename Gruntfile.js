@@ -19,6 +19,16 @@ module.exports = function(grunt) {
         cwd: './'
       }
     },
+    premailer: {
+      simple:{
+          files: [{
+              expand: true,
+              cwd: 'build/downloads/templates/',
+              src: ['**/*.html'],
+              dest: 'build/downloads/templates/inline'
+          }]
+      }
+    },
     shell: {
       makeStage: {
         command: [
@@ -26,16 +36,21 @@ module.exports = function(grunt) {
           'mkdir build',
           'mkdir build/downloads',
           'mkdir build/downloads/templates',
+          'mkdir build/downloads/templates/inline',
           'mkdir build/downloads/framework',
           'mkdir build/docs',
         ].join('&&')
       },
-      zipTemplates: {
+      removeBase: {
         command: [
           'cd build/downloads/templates/base',
           'cp * ../',
           'cd ../',
-          'rm -rf base',
+          'rm -rf base'          
+        ]
+      },
+      zipTemplates: {
+        command: [
           'zip all-templates.zip *.html',
           'for i in *.html; do zip "${i%}.zip" "$i"; done',
           'cd ../../../'
@@ -61,7 +76,6 @@ module.exports = function(grunt) {
       deployDownloads: {
         command: [
           'cd build/downloads',
-          'rsync -r . ink@zurb.com:/var/www/ink/shared/downloads',
           'cd ../../'
         ].join('&&')
       },
@@ -76,7 +90,6 @@ module.exports = function(grunt) {
         command: [
           'rsync -r docs build --exclude test --exclude examples',
           'cd build/docs',
-          'rsync -r . ink@zurb.com:/var/www/ink/shared/docs',
           'cd ../../'
         ].join('&&')
       },
@@ -101,9 +114,10 @@ module.exports = function(grunt) {
   grunt.loadNpmTasks('assemble');
   grunt.loadNpmTasks('grunt-shell');
   grunt.loadNpmTasks('grunt-contrib-watch');
+  grunt.loadNpmTasks('grunt-premailer');
 
   grunt.registerTask('make:templates', ['assemble:templates', 'shell:zipTemplates']);
-  grunt.registerTask('deploy:downloads', ['shell:makeStage', 'assemble:templates', 'shell:zipTemplates', 'shell:zipFramework', 'shell:linkFramework', 'shell:deployDownloads', 'shell:cleanUp']);
+  grunt.registerTask('deploy:downloads', ['shell:makeStage', 'assemble:templates', 'premailer:simple', 'shell:zipTemplates', 'shell:linkFramework', 'shell:deployDownloads']);
   grunt.registerTask('make:docs', ['shell:makeStage', 'assemble:docsDev', 'shell:testDocs']);
   grunt.registerTask('deploy:docs', ['shell:makeStage', 'assemble:docsDeploy', 'shell:deployDocs', 'shell:cleanUp']);
   grunt.registerTask('default', ['make:docs', 'watch']);

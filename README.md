@@ -9,17 +9,13 @@ Download:      http://zurb.com/ink/download.php
 
 Ink is MIT-licensed and absolutely free to use. Ink wouldn't be possible without the support of the entire ZURB team, our friends and colleagues who gave feedback, and some luminaries who did some heavy lifting that we took advantage of (thanks guys).
 
-Repo Contents
-=============
+Additions
+=========
 
-* Base Source for CSS
-* Docs
-* Responsive Email Templates
-* [README](https://github.com/zurb/ink/blob/master/README.md), [CONTRIBUTING](https://github.com/zurb/ink/blob/master/CONTRIBUTING.md) and [LICENSE](https://github.com/zurb/ink/blob/master/LICENSE.md)
+To build the files:
+``` grunt deploy:downloads ```
 
-ZURB
-====
+This version adds
+* [grunt-premailer](https://github.com/dwightjack/grunt-premailer) to generate inline styles
 
-Ink was made by [ZURB](http://www.zurb.com), a product design company in Campbell, CA.
 
-If Ink knocks your socks off the way we hope it does and you want more, why not check out [our jobs](http://zurb.com/about/talent)?

@@ -1,4 +1,4 @@
-Ink
+Ink (Foundation for Email)
 ===
 
 Ink is a responsive email framework, used to make HTML emails look great on any client or device.  It includes a 12-column grid, as well as some simple UI elements for rapid prototyping.
@@ -21,15 +21,23 @@ How to run
 ===========
 
 To develop templates with LiveReload (no inlining):
-``` grunt dev ```
+``` 
+grunt dev 
+```
 
 To develop templates with LiveReload (inlining):
-``` grunt dev:inline ```
+``` 
+grunt dev:inline
+```
 
 To build:
-``` grunt ```
+``` 
+grunt
+```
 or
-``` grunt deploy:downloads ```
+``` 
+grunt deploy:downloads
+```
 
 Additions
 =========

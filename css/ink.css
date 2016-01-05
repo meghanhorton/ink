@@ -124,7 +124,7 @@ table.column {
 
 table.columns td,
 table.column td {
-  padding: 0px 0px 10px;
+  padding: 0px;
 }
 
 table.columns td.sub-columns,

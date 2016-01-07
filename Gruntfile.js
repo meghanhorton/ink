@@ -2,7 +2,7 @@ module.exports = function(grunt) {
   grunt.initConfig({
     pkg: grunt.file.readJSON('package.json'),
     assemble: {
-      options: {partials: 'css/*.css'},
+      options: {partials: ['css/*.css','partials/*.html']},
       templates: {
         src: 'templates/**/*.html',
         dest: 'build/downloads',
